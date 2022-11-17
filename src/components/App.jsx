@@ -1,16 +1,29 @@
+import { ContactsList } from './Contacts/Contacts';
+import { PhonebookForm } from './PhonebookForm/PhonebookForm';
+import { Filter } from './Filter/Filter';
+import { Section } from './Section/Section';
+import { fetchContacts } from 'redux/operations';
+
+const titles = {
+  form: 'Phonebook',
+  contacts: 'Contacts',
+};
+
 export const App = () => {
+  // useEffect(() => {
+  //   localStorage.setItem('contacts', JSON.stringify(contacts));
+  // }, [contacts]);
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <>
+      <Section title={titles.form}>
+        <PhonebookForm />
+      </Section>
+
+      <Section title={titles.contacts}>
+        <Filter />
+        <ContactsList />
+      </Section>
+    </>
   );
 };
