@@ -3,6 +3,9 @@ import { PhonebookForm } from './PhonebookForm/PhonebookForm';
 import { Filter } from './Filter/Filter';
 import { Section } from './Section/Section';
 import { fetchContacts } from 'redux/operations';
+import { useEffect } from 'react';
+import { selectContacts } from 'redux/selectors';
+import { useDispatch } from 'react-redux';
 
 const titles = {
   form: 'Phonebook',
@@ -10,9 +13,11 @@ const titles = {
 };
 
 export const App = () => {
-  // useEffect(() => {
-  //   localStorage.setItem('contacts', JSON.stringify(contacts));
-  // }, [contacts]);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts(selectContacts()));
+  }, [dispatch]);
 
   return (
     <>

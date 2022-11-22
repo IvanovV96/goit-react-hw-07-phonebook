@@ -4,9 +4,9 @@ import { Field, Formik } from 'formik';
 import * as Yup from 'yup';
 import { ToastContainer } from 'react-toastify';
 import { ErrorMessageEl, FormEl } from './PhonebookForm.styled';
-import { addContact } from 'redux/contacts/slice';
-import { updateFilter } from 'redux/filter/slice';
 import { selectContacts } from 'redux/selectors';
+import { addContact, fetchContacts } from 'redux/operations';
+import { updateFilter } from 'redux/contacts/slice';
 
 const initialValues = {
   name: '',
@@ -38,15 +38,15 @@ export const PhonebookForm = () => {
   const contacts = useSelector(selectContacts);
   const handleSubmit = (values, { resetForm }) => {
     if (
-      contacts.some(
-        contact => contact.name.toLowerCase() === values.name.toLowerCase()
-      )
+      contacts.some(contact => {
+        return contact.name?.toLowerCase() === values.name?.toLowerCase();
+      })
     ) {
       toastWarn(values.name);
       return;
     }
-
     dispatch(addContact(values));
+    dispatch(fetchContacts(selectContacts));
     dispatch(updateFilter(''));
     resetForm();
   };

@@ -1,20 +1,20 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { removeContact } from 'redux/contacts/slice';
+import { deleteContact } from 'redux/operations';
 import { ContactEl } from './Contacts.styled';
 
 export const Contact = ({ contact }) => {
-  const { id, name, number } = contact;
+  const { id, name, phone } = contact;
   const dispatch = useDispatch();
   const handleClick = () => {
-    dispatch(removeContact(id));
+    dispatch(deleteContact(id));
   };
   return (
     <ContactEl key={id}>
       <p>
-        {name}: {number}
+        {name}: {phone}
       </p>
-      <button type="button" onClick={handleClick} id={id}>
+      <button type="button" onClick={handleClick}>
         Delete
       </button>
     </ContactEl>

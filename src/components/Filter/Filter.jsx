@@ -1,9 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux/es/exports';
-import { getFilterValue, updateFilter } from 'redux/filter/slice';
+import { updateFilter } from 'redux/contacts/slice';
+
+import { selectFilter } from 'redux/selectors';
+
 import { FilterField } from './Filter.styled';
 export const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(getFilterValue);
+  const filter = useSelector(selectFilter);
   return (
     <FilterField
       type="text"
