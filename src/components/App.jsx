@@ -24,7 +24,6 @@ export const App = () => {
       <Section title={titles.form}>
         <PhonebookForm />
       </Section>
-
       <Section title={titles.contacts}>
         <Filter />
         <ContactsList />

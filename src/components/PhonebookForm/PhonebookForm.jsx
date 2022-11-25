@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import { ToastContainer } from 'react-toastify';
 import { ErrorMessageEl, FormEl } from './PhonebookForm.styled';
 import { selectContacts } from 'redux/selectors';
-import { addContact, fetchContacts } from 'redux/operations';
+import { addContact } from 'redux/operations';
 import { updateFilter } from 'redux/contacts/slice';
 
 const initialValues = {
@@ -46,7 +46,6 @@ export const PhonebookForm = () => {
       return;
     }
     dispatch(addContact(values));
-    dispatch(fetchContacts(selectContacts));
     dispatch(updateFilter(''));
     resetForm();
   };

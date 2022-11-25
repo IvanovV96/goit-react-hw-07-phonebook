@@ -6,9 +6,8 @@ import { ContactEl } from './Contacts.styled';
 export const Contact = ({ contact }) => {
   const { id, name, phone } = contact;
   const dispatch = useDispatch();
-  const handleClick = () => {
-    dispatch(deleteContact(id));
-  };
+  const handleClick = () => dispatch(deleteContact(id));
+
   return (
     <ContactEl key={id}>
       <p>
